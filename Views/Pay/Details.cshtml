@@ -1,0 +1,52 @@
+﻿@model TestWebAppliction.Models.PaymentModel
+
+<div>
+    <h4>PaymentModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PayDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PayDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Methard)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Methard)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StudenModeltId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StudenModeltId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BatchModelId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BatchModelId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

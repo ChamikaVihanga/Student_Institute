@@ -1,0 +1,53 @@
+﻿@model IEnumerable<TestWebAppliction.Models.StudentCourseModel>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@using (Html.BeginForm("Create", "Payment", FormMethod.Post))
+{
+    <input type="text" name="input1" />
+    <button type="submit">Search</button>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.StudentModel.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StudentModel.StudentNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CourseModeId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CourseModel.CouresePrice)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentModel.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentModel.StudentNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseModel.CourseName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseModel.CouresePrice)
+            </td>
+            @* <td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+                </td>*@
+        </tr>
+    }
+
+</table>
