@@ -23,7 +23,9 @@ namespace TestWebAppliction.Models
         {
             connection();
             SqlCommand cmd = new SqlCommand("AddNewStudent", con);
+            SqlCommand cmd1 = new SqlCommand("AddNewStudentCourse", con);
             cmd.CommandType = CommandType.StoredProcedure;
+            cmd1.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@Name", smodel.Name);
             cmd.Parameters.AddWithValue("@StudentNo", smodel.StudentNo);
@@ -31,6 +33,7 @@ namespace TestWebAppliction.Models
             cmd.Parameters.AddWithValue("@Address", smodel.Address);
             cmd.Parameters.AddWithValue("@Password", smodel.Password);
             cmd.Parameters.AddWithValue("@BatchID", smodel.BatchModelId);
+            cmd1.Parameters.AddWithValue("@CourseID", smodel.StudentCourseModel.CourseModeId);
 
             con.Open();
             int i = cmd.ExecuteNonQuery();

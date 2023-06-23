@@ -21,6 +21,7 @@ namespace TestWebAppliction.Models
 
         //................
         public List<PaymentModel> paymentModels { get; set; }
+        public List<StudentModel> studentModels { get; set; }
 
 
 

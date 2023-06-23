@@ -33,7 +33,12 @@ namespace TestWebAppliction.Models
         
 
         //.........
-        public List<StudentCourseModel> StudentCoursesModel { get; set; }
+        /*public List<StudentCourseModel> StudentCoursesModel { get; set; }*/
+
+        public int StudentCourseId { get; set; }
+        public StudentCourseModel StudentCourseModel { get; set; }
+
+
         /*public List<PaymentModel> paymentModels { get; set; }*/
 
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.Office2010.Excel;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -17,13 +18,14 @@ namespace TestWebAppliction.Models.StudentCourse
             con = new SqlConnection(constring);
         }
 
-        public List<StudentCourseModel> GetFilter()
+        public List<StudentCourseModel> GetFilter(int id)
         {
             connection();
             List<StudentCourseModel> scList = new List<StudentCourseModel>();
 
             SqlCommand cmd = new SqlCommand("GetStudentCourseDetails", con);
             cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@StudentNo", id);
             SqlDataAdapter sd = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
 

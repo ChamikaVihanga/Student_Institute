@@ -7,6 +7,7 @@ using TestWebAppliction.Models.Course;
 using TestWebAppliction.Models.StudentCourse;
 using TestWebAppliction.Models;
 using TestWebAppliction.Models.Payment;
+using DocumentFormat.OpenXml.Bibliography;
 
 namespace TestWebAppliction.Controllers
 {
@@ -27,16 +28,15 @@ namespace TestWebAppliction.Controllers
         }
 
         // GET: Payment/Create
-        public ActionResult Create(string input1)
-        {
-            
-            ViewBag.AlertMessage = input1;
-            StudentCourseDbHandel scdbhandel = new StudentCourseDbHandel();
-            var sc = scdbhandel.GetSC();
-            ViewBag.sc = new SelectList(sc, "studentID", "Name");
+        //public ActionResult Create()
+        //{
 
-            return View(input1);
-        }
+        //    /*StudentCourseDbHandel scdbhandel = new StudentCourseDbHandel();
+        //    var sc = scdbhandel.GetSC();
+        //    ViewBag.sc = new SelectList(sc, "studentID", "Name");*/
+
+        //    return View();
+        //}
 
         // POST: Payment/Create
         [HttpPost]
@@ -44,17 +44,8 @@ namespace TestWebAppliction.Controllers
         {
             try
             {
-                
-                StudentCourseDbHandel scdbhandel = new StudentCourseDbHandel();
-                var sc = scdbhandel.GetSC();
-                ViewBag.sc = new SelectList(sc, "studentID", "Name");
-
-
-                StudentCourseDetailsController paymentDbHandel = new StudentCourseDetailsController();
-                paymentDbHandel.GetStudentCourseDetails(9);
-                /*CourseDbHandel courseModel = new CourseDbHandel();
-                var a = courseModel.GetCourse();
-                ViewBag.course = new SelectList(a, "CourseModelID", "CoureseName");*/
+                /* StudentCourseDetailsController paymentDbHandel = new StudentCourseDetailsController();
+                 paymentDbHandel.GetStudentCourseDetails(9);*/
 
                 if (ModelState.IsValid)
                 {
@@ -74,55 +65,35 @@ namespace TestWebAppliction.Controllers
 
         }
 
-        /*public ActionResult StudentStudent(string Name)
+
+        public ActionResult Create(int id = 0)
         {
+            if (id != 0)
+            {
+                ScFilterDbHandel scdbhandle = new ScFilterDbHandel();
+                ModelState.Clear();
+                //return View(scdbhandle.GetFilter(id));
 
-        }*/
-
-        //Searching
-        public ActionResult SearchStudent(string Name)
-        {
-
-            ScFilterDbHandel scfilterdbhandle = new ScFilterDbHandel();
-            var pay = scfilterdbhandle.GetFilter();
-            ViewBag.student = new SelectList(pay, "ID", "Name");
+                var StudentCourseDetails = scdbhandle.GetFilter(id);
+                foreach (var item in StudentCourseDetails)
+                {
+                    ViewBag.StudentName = item.StudentModel.Name;
+                    ViewBag.SelectCource = item.CourseModel.CourseName + "-" + item.CourseModel.CouresePrice;
+                }
 
 
-
+                ViewBag.StudentCourse = StudentCourseDetails;
+            }
 
             return View();
         }
 
-        //......................................
-        //post paymet get student_course
-        /* public ActionResult Payment()
-         {
-             return View();
-         }
+        //Searching
 
-         public ActionResult Payment(PaymentModel pmodel)
-         {
-             try
-             {
-                 if (ModelState.IsValid)
-                 {
-                     PaymentDbHandel pdbhandel = new PaymentDbHandel();
-                     if (pdbhandel.AddPay(pmodel))
-                     {
-                         ViewBag.Message = "Payment Details Added Successfully";
-                         ModelState.Clear();
-                     }
-                 }
-                 return View();
-             }
-             catch
-             {
-                 return View();
-             }
-         }*/
-
-        //.......................................
-
+        public ActionResult SearchStudent()
+        {
+            return View();
+        }
 
 
         // GET: Payment/Edit/5

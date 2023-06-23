@@ -1,10 +1,6 @@
-﻿@*@model TestWebAppliction.Models.PaymentModel*@
-@model List<TestWebAppliction.Models.StudentCourse.StudentCourseDetailsModel>
+﻿@model TestWebAppliction.Models.PaymentModel
 
-@*<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
-    <link href="_content/MudBlazor/MudBlazor.min.css" rel="stylesheet" />
 
-    <script src="_content/MudBlazor/MudBlazor.min.js"></script>*@
 
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/jqueryval")
@@ -20,74 +16,69 @@
         <h4>
             PaymentModel
         </h4>
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-       @* <div class="form-group  col-md-6">
-            @Html.LabelFor(model => model.PayDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PayDate, new { htmlAttributes = new { @type = "date", @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PayDate, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-
-        <div class="form-group col-md-6">
-           @* @Html.LabelFor(model => model.StudentCourseModel.StudentModel.StudentNo, htmlAttributes: new { @class = "control-label col-md-2" })*@
-            <div class="col-md-10">
-                @*    @Html.DropDownListFor(model => model.StudentCourseModelID, (IEnumerable<SelectListItem>)ViewBag.sc, null, new { @class = "form-control" })*@
-                @using (Html.BeginForm("GetStudentCourseDetails", "StudentCourseDetails", FormMethod.Post))
-                {
-                    <input type="text" name="input1" />
-                    <button type="submit">Search</button>
-                }
-                @*@Html.ValidationMessageFor(model => model.StudentCourseModelID, "", new { @class = "text-danger" })*@
-            </div>
-        </div>
-        <br />
         <div>
-            <div>
-                <label> Student Name -  @*@Model.StudentCourseModel.StudentModel.Name*@ </label>
-            </div>
-            <br />
-            @*<div class="form-group">
-                @Html.LabelFor(model => model.StudentCourseModel.CourseModel.CourseName, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    
-                    @Html.EditorFor(model => model.StudentCourseModel.CourseModel.CourseName, new { htmlAttributes = new { @class = "form-control" } })
-                    
-                </div>
-            </div>*@
-
-            <br />
-
-            <div>
-                <label> Course Price - @*@Model.StudentCourseModel.StudentModel.Name*@ </label>
-            </div>
+            @Html.TextBox("SearchStudent")
+            <input type="button" value="Search" class="btn btn-primary" id="lnk" />
         </div>
-        <br />
-
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
-            </div>
+        <div>
+            <label> Student Name - @ViewBag.StudentName    @*@Model.StudentCourseModel.StudentModel.Name*@ </label>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.PayMethard, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(m => m.PayMethard, new SelectList(Enum.GetValues(typeof(TestWebAppliction.Models.Methard))), "Select Methard")
+            <label>Course Name</label>
 
-                @Html.ValidationMessageFor(model => model.PayMethard, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
+            @if (ViewBag.StudentCourse != null)
+            {
+                @Html.DropDownListFor(model => model.StudentCourseModelID, new SelectList(ViewBag.StudentCourse, "ID", "CourseModel.CourseName"), "--Select--", new { @id = "SelectedCourse", @class = "myclass" })
+            }
+        </div>
+        <div>
+            <label> Course Price -  </label>
+        </div>
+        <hr />
+    </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Pay" class="btn btn-default colo" />
-            </div>
+    <div class="form-group">
+        <label>Pay Price</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
         </div>
     </div>
+
+
+    <div class="form-group  col-md-6">
+        <label>Pay Date</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.PayDate, new { htmlAttributes = new { @type = "date", @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PayDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group col-md-6">
+
+        <div class="col-md-20">
+
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <label>Pay Methard</label>
+        <div class="col-md-10">
+            @Html.DropDownListFor(m => m.PayMethard, new SelectList(Enum.GetValues(typeof(TestWebAppliction.Models.Methard))), "Select Methard")
+            @Html.ValidationMessageFor(model => model.PayMethard, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <br />
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Pay" class="btn btn-success" />
+        </div>
+    </div>
+
 
 
 
@@ -107,3 +98,22 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+
+
+<script>
+
+    //$(document).ready(function () {
+      //  $('#SelectedCourse').change(function (e) {
+        //    alert('@ViewBag.CoursePrice')
+        //});
+
+    $("#lnk").click(function (evt) {
+        var searchid = $("#SearchStudent").val();
+        window.location.href = '/Payment/Create/' + searchid;
+    });
+
+
+
+
+</script>

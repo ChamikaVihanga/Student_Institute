@@ -12,11 +12,13 @@ namespace TestWebAppliction.Controllers
     public class ScFilterController : Controller
     {
         // GET: ScFilter
-        public ActionResult Index()
+
+        public ActionResult Index(int id)
         {
             ScFilterDbHandel scdbhandle = new ScFilterDbHandel();
             ModelState.Clear();
-            return View(scdbhandle.GetFilter());
+            return View(scdbhandle.GetFilter(id));
         }
+        
     }
 }

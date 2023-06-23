@@ -54,7 +54,7 @@ namespace TestWebAppliction.Controllers
 
         // 3. ************* EDIT Coor DETAILS ******************
         // GET: Student/Edit/5
-        public ActionResult Update(int id)
+        public ActionResult Edit(int id)
         {
             CoordinatorBdHendel cdbh = new CoordinatorBdHendel();
             return View(cdbh.GetCoor().Find(smodel => smodel.ID == id));

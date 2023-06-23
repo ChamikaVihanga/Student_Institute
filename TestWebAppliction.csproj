@@ -227,7 +227,6 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Coordinator\Create.cshtml" />
-    <Content Include="Views\Coordinator\Update.cshtml" />
     <Content Include="Views\Coordinator\Delete.cshtml" />
     <Content Include="Views\Coordinator\Index.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
@@ -252,10 +251,13 @@
     <Content Include="Views\Student\Index.cshtml" />
     <Content Include="Views\Student\Create.cshtml" />
     <Content Include="Views\Student\Edit.cshtml" />
-    <Content Include="Views\Student\Delete.cshtml" />
     <Content Include="Views\StudentCourse\Delete.cshtml" />
     <Content Include="Views\StudentCourseDetails\GetStudentCourseDetails.cshtml" />
     <Content Include="Views\ScFilter\Index.cshtml" />
+    <Content Include="Views\Payment\Delete.cshtml" />
+    <Content Include="Views\Student\Delete.cshtml" />
+    <Content Include="Views\Coordinator\Edit.cshtml" />
+    <Content Include="Views\Payment\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

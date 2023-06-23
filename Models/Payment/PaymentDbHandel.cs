@@ -21,30 +21,6 @@ namespace TestWebAppliction.Models.Payment
             con = new SqlConnection(constring);
         }
 
-
-        /*public ActionResult GetStudentDetails(int studentId)
-        {
-            string connectionString = ConfigurationManager.ConnectionStrings["YourConnectionString"].ConnectionString;
-            DataTable dataTable = new DataTable();
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                SqlCommand command = new SqlCommand("GetStudentDetails", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@StudentID", studentId);
-
-                SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
-                dataAdapter.Fill(dataTable);
-            }
-
-            // Process the DataTable or pass it to the view
-            // For example, you can pass it to a view using the ViewBag
-
-
-            ViewBag.StudentDetails = dataTable;
-
-            return View();
-        }*/
         //****************** add new pay *************
         
         public bool AddPay(PaymentModel smodel)
@@ -53,7 +29,7 @@ namespace TestWebAppliction.Models.Payment
             SqlCommand cmd = new SqlCommand("AddNewPayment", con);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.AddWithValue("@PayDate", smodel.PayDate);
+             cmd.Parameters.AddWithValue("@PayDate", smodel.PayDate);
             cmd.Parameters.AddWithValue("@StudentCourseID", smodel.StudentCourseModelID);
             cmd.Parameters.AddWithValue("@PayMethard", smodel.PayMethard);
             cmd.Parameters.AddWithValue("@Price", smodel.Price);
@@ -145,7 +121,7 @@ namespace TestWebAppliction.Models.Payment
                         StudentCourseModelID = Convert.ToInt32(dr["StudentCourseID"]),
                         Price = Convert.ToString(dr["Price"]),
                         PayMethard = Convert.ToString(dr["PayMethard"]),
-                        StudentCourseModel = new StudentCourseModel { StudentModel = new StudentModel { Name = Convert.ToString(dr["Name"]) }  }  
+                        StudentCourseModel = new StudentCourseModel { StudentModel = new StudentModel { Name = Convert.ToString(dr["Name"]) }, CourseModel = new CourseModel {CourseName = Convert.ToString(dr["CoureseName"])}}  
                     });
             }
             return payList;

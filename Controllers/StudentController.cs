@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using TestWebAppliction.Models;
 using TestWebAppliction.Models.Batch;
+using TestWebAppliction.Models.Course;
 
 namespace TestWebAppliction.Controllers
 {
@@ -28,6 +29,10 @@ namespace TestWebAppliction.Controllers
             var batch = bdbhange.GetBatch();
             ViewBag.batch = new SelectList(batch, "ID", "BatchName");
 
+            CourseDbHandel cdbhandel = new CourseDbHandel();
+            var course = cdbhandel.GetCourse();
+            ViewBag.course = new SelectList(course, "ID", "CourseName");
+
             return View();
         }
 
@@ -41,6 +46,10 @@ namespace TestWebAppliction.Controllers
                 BatchDbhandel bdbhange = new BatchDbhandel();
                 var batch = bdbhange.GetBatch();
                 ViewBag.batch = new SelectList(batch, "ID", "BatchName");
+
+                CourseDbHandel cdbhandel = new CourseDbHandel();
+                var course = cdbhandel.GetCourse();
+                ViewBag.course = new SelectList(course, "ID", "CourseName");
 
                 if (ModelState.IsValid)
                 {
@@ -63,7 +72,13 @@ namespace TestWebAppliction.Controllers
         public ActionResult Edit(int id)
         {
             StudentDbHandel sdb = new StudentDbHandel();
+            BatchDbhandel bdbhange = new BatchDbhandel();
+            var batch = bdbhange.GetBatch();
+            ViewBag.batch = new SelectList(batch, "ID", "BatchName");
             return View(sdb.GetStudent().Find(smodel => smodel.ID == id));
+            
+
+
         }
 
         // POST: Student/Edit/5
@@ -72,6 +87,16 @@ namespace TestWebAppliction.Controllers
         {
             try
             {
+               
+
+                CourseDbHandel cdbhandel = new CourseDbHandel();
+                var course = cdbhandel.GetCourse();
+                ViewBag.course = new SelectList(course, "ID", "CourseName");
+
+                BatchDbhandel bdbhange = new BatchDbhandel();
+                var batch = bdbhange.GetBatch();
+                ViewBag.batch = new SelectList(batch, "ID", "BatchName");
+
                 StudentDbHandel sdb = new StudentDbHandel();
                 sdb.UpdateDetails(smodel);
                 return RedirectToAction("Index");
@@ -83,7 +108,7 @@ namespace TestWebAppliction.Controllers
         }
 
         // GET: Student/Delete/5
-        /*public ActionResult Delete(int id)
+        public ActionResult Delete(int id)
         {
             try
             {
@@ -98,7 +123,7 @@ namespace TestWebAppliction.Controllers
             {
                 return View();
             }
-        }*/
+        }
     }
 }
 

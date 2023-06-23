@@ -79,9 +79,9 @@ namespace TestWebAppliction.Models.Batch
             SqlCommand cmd = new SqlCommand("UpdateBatch", con);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.AddWithValue("@BatchId", bmodel.ID);
-            cmd.Parameters.AddWithValue("@CostOfBatch", bmodel.BatchName);
-            cmd.Parameters.AddWithValue("@StudentID", bmodel.CreateDate);
+            cmd.Parameters.AddWithValue("@BatchID", bmodel.ID);
+            cmd.Parameters.AddWithValue("@BatchName", bmodel.BatchName);
+            cmd.Parameters.AddWithValue("@CreateDate", bmodel.CreateDate);         
             
 
             con.Open();

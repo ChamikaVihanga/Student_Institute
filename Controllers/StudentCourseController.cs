@@ -70,6 +70,14 @@ namespace TestWebAppliction.Controllers
         // GET: Student/Edit/5
         public ActionResult Edit(int id)
         {
+            StudentDbHandel scdbhandle = new StudentDbHandel();
+            var x = scdbhandle.GetStudent();
+            ViewBag.student = new SelectList(x, "ID", "Name");
+
+            CourseDbHandel courseModel = new CourseDbHandel();
+            var course = courseModel.GetCourse();
+            ViewBag.course = new SelectList(course, "ID", "CourseName");
+
             StudentCourseDbHandel scdbhandel = new StudentCourseDbHandel();
             return View(scdbhandel.GetSC().Find(smodel => smodel.ID == id));
         }
@@ -80,6 +88,14 @@ namespace TestWebAppliction.Controllers
         {
             try
             {
+                StudentDbHandel scdbhandle = new StudentDbHandel();
+                var x = scdbhandle.GetStudent();
+                ViewBag.student = new SelectList(x, "ID", "Name");
+
+                CourseDbHandel courseModel = new CourseDbHandel();
+                var course = courseModel.GetCourse();
+                ViewBag.course = new SelectList(course, "ID", "CourseName");
+
                 StudentCourseDbHandel scdbhandel = new StudentCourseDbHandel();
                 scdbhandel.UpdateSC(scmodel);
                 return RedirectToAction("Index");
