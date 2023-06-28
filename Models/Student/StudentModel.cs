@@ -28,15 +28,17 @@ namespace TestWebAppliction.Models
         public string Password { get; set; }
 
         //.........
-        public int BatchModelId { get; set; }
-        public BatchModel BatchModel { get; set; }
+        public List<StudentCourseModel> StudentCourseModels { get; set; }
+
+        /*public int BatchModelId { get; set; }
+        public BatchModel BatchModel { get; set; }*/
         
 
         //.........
         /*public List<StudentCourseModel> StudentCoursesModel { get; set; }*/
 
-        public int StudentCourseId { get; set; }
-        public StudentCourseModel StudentCourseModel { get; set; }
+        /*public int StudentCourseId { get; set; }
+        public StudentCourseModel StudentCourseModel { get; set; }*/
 
 
         /*public List<PaymentModel> paymentModels { get; set; }*/

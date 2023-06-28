@@ -25,13 +25,13 @@ namespace TestWebAppliction.Controllers
         // GET: Student/Create
         public ActionResult Create()
         {
-            BatchDbhandel bdbhange = new BatchDbhandel();
-            var batch = bdbhange.GetBatch();
-            ViewBag.batch = new SelectList(batch, "ID", "BatchName");
+            //BatchDbhandel bdbhange = new BatchDbhandel();
+            //var batch = bdbhange.GetBatch();
+            //ViewBag.batch = new SelectList(batch, "ID", "BatchName");
 
-            CourseDbHandel cdbhandel = new CourseDbHandel();
-            var course = cdbhandel.GetCourse();
-            ViewBag.course = new SelectList(course, "ID", "CourseName");
+            //CourseDbHandel cdbhandel = new CourseDbHandel();
+            //var course = cdbhandel.GetCourse();
+            //ViewBag.course = new SelectList(course, "ID", "CourseName");
 
             return View();
         }
@@ -43,13 +43,13 @@ namespace TestWebAppliction.Controllers
             
             try
             {
-                BatchDbhandel bdbhange = new BatchDbhandel();
-                var batch = bdbhange.GetBatch();
-                ViewBag.batch = new SelectList(batch, "ID", "BatchName");
+                //BatchDbhandel bdbhange = new BatchDbhandel();
+                //var batch = bdbhange.GetBatch();
+                //ViewBag.batch = new SelectList(batch, "ID", "BatchName");
 
-                CourseDbHandel cdbhandel = new CourseDbHandel();
-                var course = cdbhandel.GetCourse();
-                ViewBag.course = new SelectList(course, "ID", "CourseName");
+                //CourseDbHandel cdbhandel = new CourseDbHandel();
+                //var course = cdbhandel.GetCourse();
+                //ViewBag.course = new SelectList(course, "ID", "CourseName");
 
                 if (ModelState.IsValid)
                 {
@@ -72,9 +72,14 @@ namespace TestWebAppliction.Controllers
         public ActionResult Edit(int id)
         {
             StudentDbHandel sdb = new StudentDbHandel();
-            BatchDbhandel bdbhange = new BatchDbhandel();
-            var batch = bdbhange.GetBatch();
-            ViewBag.batch = new SelectList(batch, "ID", "BatchName");
+
+            //BatchDbhandel bdbhange = new BatchDbhandel();
+            //var batch = bdbhange.GetBatch();
+            //ViewBag.batch = new SelectList(batch, "ID", "BatchName");
+            //CourseDbHandel cdbhandel = new CourseDbHandel();
+            //var course = cdbhandel.GetCourse();
+            //ViewBag.course = new SelectList(course, "ID", "CourseName");
+
             return View(sdb.GetStudent().Find(smodel => smodel.ID == id));
             
 
@@ -89,13 +94,13 @@ namespace TestWebAppliction.Controllers
             {
                
 
-                CourseDbHandel cdbhandel = new CourseDbHandel();
-                var course = cdbhandel.GetCourse();
-                ViewBag.course = new SelectList(course, "ID", "CourseName");
+                //CourseDbHandel cdbhandel = new CourseDbHandel();
+                //var course = cdbhandel.GetCourse();
+                //ViewBag.course = new SelectList(course, "ID", "CourseName");
 
-                BatchDbhandel bdbhange = new BatchDbhandel();
-                var batch = bdbhange.GetBatch();
-                ViewBag.batch = new SelectList(batch, "ID", "BatchName");
+                //BatchDbhandel bdbhange = new BatchDbhandel();
+                //var batch = bdbhange.GetBatch();
+                //ViewBag.batch = new SelectList(batch, "ID", "BatchName");
 
                 StudentDbHandel sdb = new StudentDbHandel();
                 sdb.UpdateDetails(smodel);

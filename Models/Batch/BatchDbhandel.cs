@@ -19,15 +19,15 @@ namespace TestWebAppliction.Models.Batch
         }
 
         // **************** ADD NEW Batch *********************
-        public bool AddBatch(BatchModel cmodel)
+        public bool AddBatch(BatchModel bmodel)
         {
             connection();
             SqlCommand cmd = new SqlCommand("AddNewBatch", con);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.AddWithValue("@BatchName", cmodel.BatchName);
-            cmd.Parameters.AddWithValue("@CreateDate ", cmodel.CreateDate);
-            
+            cmd.Parameters.AddWithValue("@BatchNumber", bmodel.BatchNumber);
+            cmd.Parameters.AddWithValue("@CreateDate ", bmodel.CreateDate);
+            /*cmd.Parameters.AddWithValue("@CourseID", bmodel.CourseID);*/
 
             /*cmd.Parameters.AddWithValue("@Name", smodel.Name);
             cmd.Parameters.AddWithValue("@City", smodel.City);
@@ -64,8 +64,10 @@ namespace TestWebAppliction.Models.Batch
                     new BatchModel
                     {
                         ID = Convert.ToInt32(dr["BatchId"]),
-                        BatchName = Convert.ToString(dr["BatchName"]),
-                        CreateDate = Convert.ToString(dr["CreateDate"]),
+                        BatchNumber = Convert.ToInt32(dr["BatchNumber"]),
+                        CreateDate = Convert.ToDateTime(dr["CreateDate"]),
+                       /* CourseID = Convert.ToInt32(dr["CourseID"]),
+                        CourseModel = new CourseModel { CourseName = Convert.ToString(dr["CoureseName"])}*/
                  
                     });
             }
@@ -80,9 +82,10 @@ namespace TestWebAppliction.Models.Batch
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@BatchID", bmodel.ID);
-            cmd.Parameters.AddWithValue("@BatchName", bmodel.BatchName);
-            cmd.Parameters.AddWithValue("@CreateDate", bmodel.CreateDate);         
-            
+            cmd.Parameters.AddWithValue("@BatchNumber", bmodel.BatchNumber);
+            cmd.Parameters.AddWithValue("@Createdate ", bmodel.CreateDate);
+            /*cmd.Parameters.AddWithValue("@CourseID", bmodel.CourseID);*/
+
 
             con.Open();
             int i = cmd.ExecuteNonQuery();

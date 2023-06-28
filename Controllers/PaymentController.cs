@@ -92,6 +92,7 @@ namespace TestWebAppliction.Controllers
 
         public ActionResult SearchStudent()
         {
+
             return View();
         }
 
@@ -99,7 +100,14 @@ namespace TestWebAppliction.Controllers
         // GET: Payment/Edit/5
         public ActionResult Edit(int id)
         {
+            
+
             PaymentDbHandel pdbhandel = new PaymentDbHandel();
+
+            StudentDbHandel scdbhandle = new StudentDbHandel();
+            var student = scdbhandle.GetStudent();
+            ViewBag.student = new SelectList(student, "ID", "Name");
+
             return View(pdbhandel.GetPayment().Find(pmodel => pmodel.Id == id));
         }
 
@@ -109,6 +117,10 @@ namespace TestWebAppliction.Controllers
         {
             try
             {
+                StudentDbHandel scdbhandle = new StudentDbHandel();
+                var student = scdbhandle.GetStudent();
+                ViewBag.student = new SelectList(student, "ID", "Name");
+
                 PaymentDbHandel pdbhandel = new PaymentDbHandel();
                 pdbhandel.UpdatePay(pmodel);
                 return RedirectToAction("Index");

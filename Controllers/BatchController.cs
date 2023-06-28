@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using TestWebAppliction.Models;
 using TestWebAppliction.Models.Batch;
+using TestWebAppliction.Models.Course;
 
 namespace TestWebAppliction.Controllers
 {
@@ -22,6 +23,10 @@ namespace TestWebAppliction.Controllers
         // GET: Batch/Create
         public ActionResult Create()
         {
+            CourseDbHandel cDbHandel = new CourseDbHandel();
+            var course = cDbHandel.GetCourse();
+            ViewBag.Course = new SelectList(course, "ID", "CourseName");
+
             return View();
         }
 
@@ -31,6 +36,10 @@ namespace TestWebAppliction.Controllers
         {
             try
             {
+                CourseDbHandel cDbHandel = new CourseDbHandel();
+                var course = cDbHandel.GetCourse();
+                ViewBag.Course = new SelectList(course, "ID", "CourseName");
+
                 if (ModelState.IsValid)
                 {
                     BatchDbhandel sdb = new BatchDbhandel();
@@ -52,6 +61,11 @@ namespace TestWebAppliction.Controllers
         public ActionResult Edit(int id)
         {
             BatchDbhandel sdb = new BatchDbhandel();
+
+            CourseDbHandel cDbHandel = new CourseDbHandel();
+            var course = cDbHandel.GetCourse();
+            ViewBag.Course = new SelectList(course, "ID", "CourseName");
+
             return View(sdb.GetBatch().Find(smodel => smodel.ID == id));
         }
 
@@ -61,6 +75,10 @@ namespace TestWebAppliction.Controllers
         {
             try
             {
+                CourseDbHandel cDbHandel = new CourseDbHandel();
+                var course = cDbHandel.GetCourse();
+                ViewBag.Course = new SelectList(course, "ID", "CourseName");
+
                 BatchDbhandel sdb = new BatchDbhandel();
                 sdb.UpdateBatch(smodel);
                 return RedirectToAction("Index");

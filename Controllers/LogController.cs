@@ -45,7 +45,7 @@ namespace TestWebAppliction.Controllers
             {
                 Session["ID"] = cmode.ID.ToString();
                 Session["UserName"] = cmode.UserName.ToString();
-                return RedirectToAction("../Student/index");
+                return RedirectToAction("../Home/index");
             }
             //var coorLog = entity.CoordinatorModels.Where(x => x.UserName == cmode.UserName && x.Password == cmode.Password).FirstOrDefault();
             //if (coorLog != null)

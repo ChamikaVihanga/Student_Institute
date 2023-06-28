@@ -34,7 +34,7 @@
             }
         </div>
         <div>
-            <label> Course Price -  </label>
+            <label> Course Price - @ViewBag.CoursePrice </label>
         </div>
         <hr />
     </div>
@@ -63,8 +63,6 @@
         </div>
     </div>
 
-
-
     <div class="form-group">
         <label>Pay Methard</label>
         <div class="col-md-10">
@@ -73,6 +71,7 @@
         </div>
     </div>
     <br />
+
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" value="Pay" class="btn btn-success" />
@@ -102,18 +101,13 @@
 
 
 <script>
-
-    //$(document).ready(function () {
-      //  $('#SelectedCourse').change(function (e) {
-        //    alert('@ViewBag.CoursePrice')
-        //});
+    // $(document).ready(function () {
+      // $('#SelectedCourse').change(function (e) {
+          // alert('@ViewBag.CoursePrice')
+       // });
 
     $("#lnk").click(function (evt) {
         var searchid = $("#SearchStudent").val();
         window.location.href = '/Payment/Create/' + searchid;
     });
-
-
-
-
 </script>

@@ -12,6 +12,8 @@ namespace TestWebAppliction.Models
         public string CouresePrice { get; set; }
 
         //.....................
-        public List<StudentCourseModel> StudentCoursesModel { get; set; }
+        /*public List<StudentCourseModel> StudentCoursesModel { get; set; }*/
+
+        public List<StudentCourseModel> StudentCourseModels { get; set; }
     }
 }

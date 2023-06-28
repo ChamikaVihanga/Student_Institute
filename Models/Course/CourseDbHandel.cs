@@ -73,9 +73,9 @@ namespace TestWebAppliction.Models.Course
                 SqlCommand cmd = new SqlCommand("UpdateCourse", con);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@StdId", cmodel.ID);
-                cmd.Parameters.AddWithValue("@Name", cmodel.CourseName);
-                cmd.Parameters.AddWithValue("@City", cmodel.CouresePrice);
+                cmd.Parameters.AddWithValue("@CourseID", cmodel.ID);
+                cmd.Parameters.AddWithValue("@CoureseName", cmodel.CourseName);
+                cmd.Parameters.AddWithValue("@CoursePrice", cmodel.CouresePrice);
 
 
                 con.Open();

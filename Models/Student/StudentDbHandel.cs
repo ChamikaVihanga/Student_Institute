@@ -23,17 +23,23 @@ namespace TestWebAppliction.Models
         {
             connection();
             SqlCommand cmd = new SqlCommand("AddNewStudent", con);
-            SqlCommand cmd1 = new SqlCommand("AddNewStudentCourse", con);
+            /*SqlCommand cmd1 = new SqlCommand("AddNewStudentCourse", con);*/
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd1.CommandType = CommandType.StoredProcedure;
+            
 
             cmd.Parameters.AddWithValue("@Name", smodel.Name);
             cmd.Parameters.AddWithValue("@StudentNo", smodel.StudentNo);
             cmd.Parameters.AddWithValue("@Age", smodel.Age);
             cmd.Parameters.AddWithValue("@Address", smodel.Address);
             cmd.Parameters.AddWithValue("@Password", smodel.Password);
-            cmd.Parameters.AddWithValue("@BatchID", smodel.BatchModelId);
-            cmd1.Parameters.AddWithValue("@CourseID", smodel.StudentCourseModel.CourseModeId);
+
+            //cmd.Parameters.AddWithValue("@BatchID", smodel.BatchModelId);
+
+            /*SqlCommand cmd1 = new SqlCommand("AddNewStudentCourse", con);
+            cmd1.CommandType = CommandType.StoredProcedure;
+            
+            cmd1.Parameters.AddWithValue()
+            cmd1.Parameters.AddWithValue("@CourseID", smodel.StudentCourseModel.CourseModeId);*/
 
             con.Open();
             int i = cmd.ExecuteNonQuery();
@@ -71,8 +77,8 @@ namespace TestWebAppliction.Models
                         Age = Convert.ToString(dr["Age"]),     
                         Address = Convert.ToString(dr["Address"]),
                         Password = Convert.ToString(dr["Password"]),
-                        BatchModelId = Convert.ToInt32(dr["BatchID"]),
-                        BatchModel = new BatchModel { BatchName = Convert.ToString(dr["BatchName"]),}
+                        //BatchModelId = Convert.ToInt32(dr["BatchID"]),
+                        //BatchModel = new BatchModel { BatchName = Convert.ToString(dr["BatchName"]),}
                     });
             }
             return studentlist;
@@ -91,7 +97,7 @@ namespace TestWebAppliction.Models
             cmd.Parameters.AddWithValue("@Age", smodel.Age);
             cmd.Parameters.AddWithValue("@Address", smodel.Address);
             cmd.Parameters.AddWithValue("@Password", smodel.Password);
-            cmd.Parameters.AddWithValue("@BatchID", smodel.BatchModelId);
+            //cmd.Parameters.AddWithValue("@BatchID", smodel.BatchModelId);
 
             con.Open();
             int i = cmd.ExecuteNonQuery();

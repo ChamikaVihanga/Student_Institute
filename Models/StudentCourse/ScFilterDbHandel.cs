@@ -38,7 +38,7 @@ namespace TestWebAppliction.Models.StudentCourse
                 scList.Add(
                     new StudentCourseModel
                     {
-                        ID = Convert.ToInt32(dr["StudentCourseID"]),
+                        ID = Convert.ToInt32(dr["StuCourBatchID"]),
                         StudentId = Convert.ToInt32(dr["StudentID"]),
                         /*CourseModeId = Convert.ToInt32(dr["CourseID"]),*/
                         StudentModel = new StudentModel { Name = Convert.ToString(dr["Name"]), StudentNo = Convert.ToInt16(dr["StudentNo"]) },

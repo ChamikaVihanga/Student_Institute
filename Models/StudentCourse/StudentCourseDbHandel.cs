@@ -21,12 +21,13 @@ namespace TestWebAppliction.Models.StudentCourse
         public bool AddSC(StudentCourseModel scmodel)
         {
             connection();
-            SqlCommand cmd = new SqlCommand("AddNewStudentCourse", con);
+            SqlCommand cmd = new SqlCommand("AddNewStuCoreBatch", con);
             cmd.CommandType = CommandType.StoredProcedure;
 
             
             cmd.Parameters.AddWithValue("@StudentID", scmodel.StudentId);
             cmd.Parameters.AddWithValue("@CourseID", scmodel.CourseModeId);
+            cmd.Parameters.AddWithValue("@BatchID", scmodel.BatchModelId);
             cmd.Parameters.AddWithValue("@Amount", scmodel.Amount);
 
             con.Open();
@@ -45,7 +46,7 @@ namespace TestWebAppliction.Models.StudentCourse
             connection();
             List<StudentCourseModel> courseList = new List<StudentCourseModel>();
 
-            SqlCommand cmd = new SqlCommand("GetStudentCourse", con);
+            SqlCommand cmd = new SqlCommand("GetStuCourBatch", con);
             cmd.CommandType = CommandType.StoredProcedure;
             SqlDataAdapter sd = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
@@ -59,12 +60,14 @@ namespace TestWebAppliction.Models.StudentCourse
                 courseList.Add(
                     new StudentCourseModel
                     {
-                        ID = Convert.ToInt32(dr["StudentCourseID"]),
+                        ID = Convert.ToInt32(dr["StuCourBatchID"]),
                         Amount = Convert.ToString(dr["Amount"]),
                         StudentId = Convert.ToInt32(dr["StudentID"]),
                         CourseModeId = Convert.ToInt32(dr["CourseID"]),
+                        BatchModelId = Convert.ToInt32(dr["BatchID"]),
                         StudentModel = new StudentModel { Name = Convert.ToString(dr["Name"]), StudentNo = Convert.ToInt16(dr["StudentNo"]) },
-                        CourseModel = new CourseModel { CourseName = Convert.ToString(dr["CoureseName"]), CouresePrice = Convert.ToString(dr["CoursePrice"]) }
+                        CourseModel = new CourseModel { CourseName = Convert.ToString(dr["CoureseName"]), CouresePrice = Convert.ToString(dr["CoursePrice"]) },
+                        BatchModel = new BatchModel { BatchNumber = Convert.ToInt16(dr["BatchNumber"])}
                     });
             }
             return courseList;
@@ -103,13 +106,14 @@ namespace TestWebAppliction.Models.StudentCourse
         public bool UpdateSC(StudentCourseModel cmodel)
         {
             connection();
-            SqlCommand cmd = new SqlCommand("UpdateStudentCourse", con);
+            SqlCommand cmd = new SqlCommand("UpdateStuCourBatch", con);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.AddWithValue("@StudentCourseID", cmodel.ID);
-            cmd.Parameters.AddWithValue("@Amount", cmodel.Amount);
+            cmd.Parameters.AddWithValue("@StuCourBatchID", cmodel.ID);
             cmd.Parameters.AddWithValue("@StudentID", cmodel.StudentId);
             cmd.Parameters.AddWithValue("@CourseID", cmodel.CourseModeId);
+            cmd.Parameters.AddWithValue("@BatchID", cmodel.BatchModelId);
+            cmd.Parameters.AddWithValue("@Amount", cmodel.Amount);
 
 
             con.Open();
@@ -126,10 +130,10 @@ namespace TestWebAppliction.Models.StudentCourse
         public bool DeleteSC(int id)
         {
             connection();
-            SqlCommand cmd = new SqlCommand("DeleteStudentCourse", con);
+            SqlCommand cmd = new SqlCommand("DeleteStuCourBatch", con);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.AddWithValue("@StudentCourseID", id);
+            cmd.Parameters.AddWithValue("@StuCourBatchID", id);
 
             con.Open();
             int i = cmd.ExecuteNonQuery();

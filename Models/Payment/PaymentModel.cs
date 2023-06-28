@@ -20,10 +20,11 @@ namespace TestWebAppliction.Models
         public int BatchModelId { get; set; }
         public BatchModel BatchModel { get; set; }*/
 
-        public int StudentCourseModelID { get; set; }
+        /*public int StudentCourseModelID { get; set; }
+        public StudentCourseModel StudentCourseModel { get; set; }*/
+
+        public int StudentCourseModelID  { get; set; }
         public StudentCourseModel StudentCourseModel { get; set; }
-
-
     }
     public enum Methard
     {

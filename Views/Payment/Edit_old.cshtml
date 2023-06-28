@@ -1,0 +1,106 @@
+﻿@model TestWebAppliction.Models.PaymentModel
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>PaymentModel</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            <div>
+                @Html.TextBox("SearchStudent")
+                <input type="button" value="Search" class="btn btn-primary" id="lnk" />
+            </div>
+            <div>
+                <label> Student Name - @ViewBag.StudentName    @*@Model.StudentCourseModel.StudentModel.Name*@ </label>
+            </div>
+
+            <div class="form-group">
+                <label>Course Name</label>
+
+                @if (ViewBag.StudentCourse != null)
+                {
+                    @Html.DropDownListFor(model => model.StudentCourseModelID, new SelectList(ViewBag.StudentCourse, "ID", "CourseModel.CourseName"), "--Select--", new { @id = "SelectedCourse", @class = "myclass" })
+                }
+            </div>
+            <div>
+                <label> Course Price -  </label>
+            </div>
+            <hr />
+        </div>
+
+        <div class="form-group">
+            <label>Pay Price</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group  col-md-6">
+            <label>Pay Date</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PayDate, new { htmlAttributes = new {@class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PayDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-6">
+
+            <div class="col-md-20">
+
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <label>Pay Methard</label>
+            <div class="col-md-10">
+                @Html.DropDownListFor(m => m.PayMethard, new SelectList(Enum.GetValues(typeof(TestWebAppliction.Models.Methard))), "Select Methard")
+                @Html.ValidationMessageFor(model => model.PayMethard, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Pay" class="btn btn-success" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script>
+
+    //$(document).ready(function () {
+      //  $('#SelectedCourse').change(function (e) {
+        //    alert('@ViewBag.CoursePrice')
+        //});
+
+    $("#lnk").click(function (evt) {
+        var searchid = $("#SearchStudent").val();
+        window.location.href = '/Payment/Create/' + searchid;
+    });
+
+
+
+
+</script>

@@ -8,10 +8,14 @@ namespace TestWebAppliction.Models
     public class BatchModel
     {
         public int ID { get; set; }
-        public string BatchName { get; set; }
-        public string CreateDate { get; set; }
+        public int BatchNumber { get; set; }
+        public DateTime CreateDate { get; set; }
 
-        public List<StudentModel> StudentModels { get; set; }
+        public List<StudentCourseModel> StudentCourseModels { get; set; }
+       /* public List<StudentModel> StudentModels { get; set; }*/
+
+       /* public int CourseID { get; set; }
+        public CourseModel CourseModel { get; set; }*/
 
         /*public string CostOfBatch { get; set; }*/
 

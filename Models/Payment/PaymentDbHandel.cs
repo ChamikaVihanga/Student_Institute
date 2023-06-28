@@ -30,7 +30,7 @@ namespace TestWebAppliction.Models.Payment
             cmd.CommandType = CommandType.StoredProcedure;
 
              cmd.Parameters.AddWithValue("@PayDate", smodel.PayDate);
-            cmd.Parameters.AddWithValue("@StudentCourseID", smodel.StudentCourseModelID);
+            cmd.Parameters.AddWithValue("@StuCourBatchID", smodel.StudentCourseModelID);
             cmd.Parameters.AddWithValue("@PayMethard", smodel.PayMethard);
             cmd.Parameters.AddWithValue("@Price", smodel.Price);
 
@@ -118,7 +118,7 @@ namespace TestWebAppliction.Models.Payment
                     {
                         Id = Convert.ToInt32(dr["PaymentId"]),
                         PayDate = Convert.ToDateTime(dr["PayDate"]),      
-                        StudentCourseModelID = Convert.ToInt32(dr["StudentCourseID"]),
+                        StudentCourseModelID = Convert.ToInt32(dr["StuCourBatchID"]),
                         Price = Convert.ToString(dr["Price"]),
                         PayMethard = Convert.ToString(dr["PayMethard"]),
                         StudentCourseModel = new StudentCourseModel { StudentModel = new StudentModel { Name = Convert.ToString(dr["Name"]) }, CourseModel = new CourseModel {CourseName = Convert.ToString(dr["CoureseName"])}}  
@@ -138,9 +138,9 @@ namespace TestWebAppliction.Models.Payment
 
             cmd.Parameters.AddWithValue("@PaymentId", smodel.Id);
             cmd.Parameters.AddWithValue("@PayDate", smodel.PayDate);
-            cmd.Parameters.AddWithValue("@Methard", smodel.PayMethard);
+            cmd.Parameters.AddWithValue("@PayMethard", smodel.PayMethard);
             cmd.Parameters.AddWithValue("@Price", smodel.Price);
-            cmd.Parameters.AddWithValue("@StudentCourseID", smodel.StudentCourseModelID);
+            //cmd.Parameters.AddWithValue("@StuCourBatchID", smodel.StudentCourseModelID);
 
             /*cmd.Parameters.AddWithValue("@StudentID", smodel.StudenModeltId);
             cmd.Parameters.AddWithValue("@BatchID", smodel.BatchModelId);*/

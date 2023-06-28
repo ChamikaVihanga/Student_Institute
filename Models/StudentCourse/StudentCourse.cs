@@ -20,8 +20,12 @@ namespace TestWebAppliction.Models
         public string Amount { get; set; }
 
         //................
+        public int BatchModelId { get; set; }
+        public BatchModel BatchModel { get; set; }
+
+        //................
         public List<PaymentModel> paymentModels { get; set; }
-        public List<StudentModel> studentModels { get; set; }
+        /*public List<StudentModel> studentModels { get; set; }*/
 
 
 

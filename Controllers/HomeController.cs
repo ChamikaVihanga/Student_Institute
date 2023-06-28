@@ -12,6 +12,11 @@ namespace TestWebAppliction.Controllers
         {
             return View();
         }
+        
+        public ActionResult MainIndex()
+        {
+            return View();
+        }
           
         public ActionResult About()
         {
