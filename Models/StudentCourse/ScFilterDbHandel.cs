@@ -17,6 +17,44 @@ namespace TestWebAppliction.Models.StudentCourse
             string constring = ConfigurationManager.ConnectionStrings["TestWebApCon"].ToString();
             con = new SqlConnection(constring);
         }
+        public StudentCourseModel GetCourseByID(int cId)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["TestWebApCon"].ToString(); // Replace with your actual database connection string
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand("GetCourseByID", connection);
+                command.CommandType = CommandType.StoredProcedure;
+
+                // Add the input parameter for CourseID
+                command.Parameters.AddWithValue("@CourseID", cId);
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                StudentCourseModel course = null;
+
+                if (reader.Read())
+                {
+                    // Retrieve course details from the SqlDataReader
+                    int courseId = reader.GetInt32(0);
+                    string courseName = reader.GetString(1);
+                    string coursePrice = reader.GetString(2);
+                    // Create a new Course object
+                    course = new StudentCourseModel()
+                    {
+                        CourseModeId = courseId,
+                        CourseModel = new CourseModel {CourseName = courseName, CouresePrice=coursePrice }
+
+                        //ID = courseId,
+                        //CourseName = courseName,
+                        //CouresePrice = coursePrice
+                    };
+                }
+                reader.Close();
+                connection.Close();
+                return course;
+            }
+        }
+
 
         public List<StudentCourseModel> GetFilter(int id)
         {

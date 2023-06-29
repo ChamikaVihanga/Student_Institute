@@ -8,6 +8,7 @@ using TestWebAppliction.Models.StudentCourse;
 using TestWebAppliction.Models;
 using TestWebAppliction.Models.Payment;
 using DocumentFormat.OpenXml.Bibliography;
+using DocumentFormat.OpenXml.Office2010.Excel;
 
 namespace TestWebAppliction.Controllers
 {
@@ -71,14 +72,15 @@ namespace TestWebAppliction.Controllers
             if (id != 0)
             {
                 ScFilterDbHandel scdbhandle = new ScFilterDbHandel();
-                ModelState.Clear();
+                /*ModelState.Clear();*/
                 //return View(scdbhandle.GetFilter(id));
 
                 var StudentCourseDetails = scdbhandle.GetFilter(id);
                 foreach (var item in StudentCourseDetails)
                 {
                     ViewBag.StudentName = item.StudentModel.Name;
-                    ViewBag.SelectCource = item.CourseModel.CourseName + "-" + item.CourseModel.CouresePrice;
+                    ViewBag.SelectCource = item.CourseModel.CourseName; /*+ item.CourseModel.CouresePrice*/
+                    
                 }
 
 
@@ -96,11 +98,31 @@ namespace TestWebAppliction.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult GetCoursePrice(int scbId = 0)
+            {
+            /*decimal coursePrice = 0;*/
+            // Retrieve the course price based on the courseId
+            ScFilterDbHandel scdbhandle = new ScFilterDbHandel();
+            StudentCourseModel scm = new StudentCourseModel();
+            /*ModelState.Clear();*/
+
+            int id = scdbhandle.GetFilter(scbId)
+                   .Where(x => x.CourseModeId == scbId)
+                   .FirstOrDefault()?.CourseModel.ID ?? 0;
+           // id.Where(x =>x.CourseModel.CouresePrice)
+            var StudentCourseDetails = scdbhandle.GetCourseByID(scbId);
+            
+            return Json(StudentCourseDetails.CourseModel.CouresePrice);
+            // Retrieve the course price from your data source (e.g., database) using the courseId
+
+            /*return Json(coursePrice.ToString());*/ // Return the course price as JSON
+        }
 
         // GET: Payment/Edit/5
         public ActionResult Edit(int id)
         {
-            
+
 
             PaymentDbHandel pdbhandel = new PaymentDbHandel();
 

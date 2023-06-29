@@ -30,11 +30,14 @@
 
             @if (ViewBag.StudentCourse != null)
             {
-                @Html.DropDownListFor(model => model.StudentCourseModelID, new SelectList(ViewBag.StudentCourse, "ID", "CourseModel.CourseName"), "--Select--", new { @id = "SelectedCourse", @class = "myclass" })
-            }
+                @Html.DropDownListFor( model => model.StudentCourseModelID, new SelectList(ViewBag.StudentCourse, "ID", "CourseModel.CourseName"),
+                 "--Select--",new { @id = "SelectedCourse", @class = "myclass", onchange = "handleDropdownChange()" })}
         </div>
         <div>
-            <label> Course Price - @ViewBag.CoursePrice </label>
+            @* <label> Course Price - @ViewBag.CoursePrice </label>*@
+            <div>
+                <label id="coursePriceLabel"> Course Price -  @ViewBag.CoursePrice </label>
+            </div>
         </div>
         <hr />
     </div>
@@ -103,11 +106,44 @@
 <script>
     // $(document).ready(function () {
       // $('#SelectedCourse').change(function (e) {
-          // alert('@ViewBag.CoursePrice')
+        //  alert('@ViewBag.CoursePrice')
        // });
 
+    //function handleDropdownChange() {
+    //    var selectedValue = document.getElementById("SelectedCourse").value;
+    //    console.log("Selected value: " + selectedValue);
+    //    // Perform any additional actions or logic based on the selected value
+    //}
+
+
+// Make an jquery
     $("#lnk").click(function (evt) {
         var searchid = $("#SearchStudent").val();
         window.location.href = '/Payment/Create/' + searchid;
+        /*document.getElementById("SearchStudent").value = searchid;*/
+        document.getElementById("SearchStudent").value = "LinuxHint";
     });
+
+    function handleDropdownChange(inputValue) {
+        var selectedCourseId = $('#SelectedCourse').val();
+        /*var selectedCourseId = inputValue;*/
+        /*alert(selectedCourseId);*/
+
+
+// Make an AJAX request to retrieve the price of the selected course
+        $.ajax({
+            url: '/Payment/GetCoursePrice',
+            type: 'POST',
+            data: { scbId : selectedCourseId },
+            success: function (response) {
+                $('#coursePriceLabel').text('Course Price - ' + response);
+                alert('Course Price = Rs.'+response+'.00');
+            },
+
+            error: function () {
+                alert('Error occurred while retrieving the course price.');
+            }
+        });
+    }
 </script>
+
